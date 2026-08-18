@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Feedback — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap">
+    <a class="back-btn" href="/">← Back to Chat</a>
+    <div class="page-header">
+      <span class="page-icon">⭐</span>
+      <div>
+        <h1>Event Feedback</h1>
+        <p>Tell us about your experience</p>
+      </div>
+    </div>
+
+    <div class="page-card" id="fbCard">
+      <p class="fb-rate-label">Rate the Event</p>
+      <div class="star-page-row" id="starRow">
+        <span class="star-page" data-v="1">★</span>
+        <span class="star-page" data-v="2">★</span>
+        <span class="star-page" data-v="3">★</span>
+        <span class="star-page" data-v="4">★</span>
+        <span class="star-page" data-v="5">★</span>
+      </div>
+      <p class="star-page-label" id="starLabel">Tap a star to rate</p>
+      <textarea id="fbMsg" placeholder="Share your thoughts, suggestions or comments…" rows="5"></textarea>
+      <button class="page-btn" id="submitFb">Submit Feedback</button>
+
+      <div class="success-box" id="fbSuccess" style="display:none">
+        <div class="success-big-icon">💙</div>
+        <h2>Thank You!</h2>
+        <p>Your valuable feedback has been submitted.<br>We appreciate your time!</p>
+        <a href="/" class="page-btn" style="display:inline-block;margin-top:16px;text-decoration:none;">← Back to Chat</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedRating = 0;
+    const labels = ["","Poor","Fair","Good","Very Good","Excellent"];
+    const stars  = document.querySelectorAll(".star-page");
+
+    stars.forEach(s => {
+      s.addEventListener("mouseover", () => stars.forEach(x => x.classList.toggle("active", +x.dataset.v <= +s.dataset.v)));
+      s.addEventListener("mouseout",  () => stars.forEach(x => x.classList.toggle("active", +x.dataset.v <= selectedRating)));
+      s.addEventListener("click", () => {
+        selectedRating = +s.dataset.v;
+        document.getElementById("starLabel").textContent = labels[selectedRating];
+        stars.forEach(x => x.classList.toggle("active", +x.dataset.v <= selectedRating));
+      });
+    });
+
+    document.getElementById("submitFb").addEventListener("click", async () => {
+      if (!selectedRating) { alert("Please select a star rating!"); return; }
+      const message = document.getElementById("fbMsg").value.trim();
+      try {
+        const res  = await fetch("/api/feedback", {
+          method: "POST", headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ rating: selectedRating, message })
+        });
+        const json = await res.json();
+        if (json.status === "ok") {
+          document.getElementById("fbCard").querySelector("form, p, .star-page-row, #starLabel, #fbMsg, #submitFb");
+          document.getElementById("submitFb").style.display = "none";
+          document.getElementById("fbMsg").style.display    = "none";
+          document.getElementById("starRow").style.pointerEvents = "none";
+          document.getElementById("fbSuccess").style.display = "block";
+        } else { alert(json.message); }
+      } catch { alert("Network error. Please try again."); }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Attendance — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap" style="max-width:900px;">
+    <a class="back-btn" href="/">← Back to Chat</a>
+
+    <div class="page-header">
+      <span class="page-icon">📋</span>
+      <div>
+        <h1>Student Attendance</h1>
+        <p>AI &amp; Technology Workshop — 14 August 2026 | SNJB Chandwad</p>
+      </div>
+    </div>
+
+    <!-- Stats cards -->
+    <div class="att-stats">
+      <div class="att-stat-card total">
+        <span class="att-stat-num">{{ total }}</span>
+        <span class="att-stat-label">Total Registered</span>
+      </div>
+      <div class="att-stat-card present">
+        <span class="att-stat-num">{{ present }}</span>
+        <span class="att-stat-label">Present</span>
+      </div>
+      <div class="att-stat-card absent">
+        <span class="att-stat-num">{{ absent }}</span>
+        <span class="att-stat-label">Absent</span>
+      </div>
+    </div>
+
+    <!-- Search + Quick mark -->
+    <div class="att-search-row">
+      <input type="text" id="searchInput" placeholder="Search by name, ID or phone…" />
+      <button class="page-btn" id="searchBtn">🔍 Search</button>
+      <button class="page-btn" style="background:#4dc47a;" id="refreshBtn" onclick="location.reload()">🔄 Refresh</button>
+    </div>
+
+    <!-- Quick mark by ID -->
+    <div class="att-mark-row">
+      <input type="text" id="markId" placeholder="Enter Attendance ID (e.g. ATT-0001)" style="text-transform:uppercase"/>
+      <button class="page-btn" style="background:#4dc47a;" onclick="markStudent('present')">✅ Mark Present</button>
+      <button class="page-btn" style="background:#e74c3c;" onclick="markStudent('absent')">❌ Mark Absent</button>
+    </div>
+    <div id="markMsg" class="att-mark-msg" style="display:none"></div>
+
+    <!-- Students table -->
+    <div class="att-table-wrap">
+      <table class="att-table" id="studentsTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Attendance ID</th>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>College</th>
+            <th>Registered On</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          {% for s in students %}
+          <tr class="student-row {{ 'row-present' if s.present == 1 else 'row-absent' }}" data-id="{{ s.attendance_id }}" data-name="{{ s.name }}" data-phone="{{ s.phone }}">
+            <td>{{ loop.index }}</td>
+            <td><span class="att-id-badge">{{ s.attendance_id }}</span></td>
+            <td><strong style="color:var(--tg-accent)">{{ s.roll_no if s.roll_no and s.roll_no != 'blank' else '-' }}</strong></td>
+            <td><strong>{{ s.name }}</strong></td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.college }}</td>
+            <td>{{ s.registered_at[:10] }}</td>
+            <td>
+              <span class="status-badge {{ 'status-present' if s.present == 1 else 'status-absent' }}">
+                {{ '✅ Present' if s.present == 1 else '❌ Absent' }}
+              </span>
+            </td>
+            <td>
+              <button class="att-action-btn present-btn" onclick="quickMark('{{ s.attendance_id }}', 'present')">✅</button>
+              <button class="att-action-btn absent-btn"  onclick="quickMark('{{ s.attendance_id }}', 'absent')">❌</button>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="8" style="text-align:center;padding:32px;color:var(--tg-muted)">No students registered yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── Team Seating Allocation ────────────────────────────── -->
+    <div style="margin-top:32px;">
+      <div class="att-section-header">
+        <span class="att-section-icon">🏢</span>
+        <div>
+          <h2 style="font-size:18px;font-weight:800;margin:0 0 2px;">Team Seating Allocation</h2>
+          <p style="font-size:12px;color:#8ba3b8;margin:0;">AgentX HACKATHON — Lab-wise seating for all teams</p>
+        </div>
+      </div>
+
+      <!-- Lab summary chips -->
+      <div class="att-lab-chips">
+        {% set labs = teams | map(attribute='lab_no') | unique | sort | list %}
+        {% for lab in labs %}
+        {% set lab_teams = teams | selectattr('lab_no', 'equalto', lab) | list %}
+        {% set lab_students = lab_teams | map(attribute='num_students') | sum %}
+        <span class="att-lab-chip">Lab {{ lab }} &nbsp;·&nbsp; {{ lab_teams | length }} teams &nbsp;·&nbsp; {{ lab_students }} students</span>
+        {% endfor %}
+      </div>
+
+      <!-- Search teams -->
+      <div class="att-search-row" style="margin-bottom:12px;">
+        <input type="text" id="teamSearch" placeholder="Search by team name or ID…" />
+        <button class="page-btn" onclick="filterTeams()" style="width:auto;margin-top:0;padding:10px 18px;font-size:13px;">🔍 Search</button>
+      </div>
+
+      <!-- Teams table -->
+      <div class="att-table-wrap">
+        <table class="att-table" id="teamsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team ID</th>
+              <th>Team Name</th>
+              <th>No. of Students</th>
+              <th>Lab No</th>
+              <th>Marks</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="teamsBody">
+            {% for t in teams %}
+            {% set m = marks.get(t.team_id) %}
+            <tr class="team-row" data-name="{{ t.team_name | lower }}" data-id="{{ t.team_id }}">
+              <td style="color:#8ba3b8;">{{ loop.index }}</td>
+              <td><span class="att-id-badge" style="background:rgba(240,196,64,.1);color:#f0c440;">{{ t.team_id }}</span></td>
+              <td><strong>{{ t.team_name }}</strong></td>
+              <td style="text-align:center;">
+                <span class="att-student-count">{{ t.num_students }}</span>
+              </td>
+              <td>
+                <span class="att-lab-badge att-lab-{{ t.lab_no }}">Lab {{ t.lab_no }}</span>
+              </td>
+              <td id="marks-{{ t.team_id }}">
+                {% if m %}
+                  <span class="att-marks-badge">{{ m.marks | int if m.marks == m.marks | int else m.marks }}/100</span>
+                  {% if m.remarks %}
+                  <div style="font-size:11px;color:#8ba3b8;margin-top:2px;">{{ m.remarks }}</div>
+                  {% endif %}
+                {% else %}
+                  <span style="color:#8ba3b8;font-size:12px;">—</span>
+                {% endif %}
+              </td>
+              <td>
+                <button class="att-action-btn marks-btn"
+                  onclick="openMarksModal({{ t.team_id }}, '{{ t.team_name }}', {{ m.marks if m else 0 }}, '{{ m.remarks if m else '' }}')">
+                  ✏️ Marks
+                </button>
+              </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="7" style="text-align:center;padding:32px;color:#8ba3b8;">No teams found.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div style="text-align:center;margin-top:8px;font-size:12px;color:#8ba3b8;">
+        {{ teams | length }} teams &nbsp;·&nbsp; {{ teams | map(attribute='num_students') | sum }} total students registered
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:20px;font-size:13px;color:var(--tg-muted)">
+      Total {{ total }} student(s) registered &nbsp;|&nbsp; Coordinator: Miss. Sandhya Aghav Mam — 9579001895
+    </div>
+  </div>
+
+  <!-- ── Marks Modal ──────────────────────────────────────────── -->
+  <div id="marksModal" class="marks-modal-overlay" style="display:none;">
+    <div class="marks-modal-box">
+      <div class="marks-modal-header">
+        <span>✏️ Add / Update Marks</span>
+        <button class="marks-modal-close" onclick="closeMarksModal()">✕</button>
+      </div>
+      <div class="marks-modal-team" id="modalTeamName">Team Name</div>
+
+      <div class="marks-modal-field">
+        <label>Marks (out of 100)</label>
+        <input type="number" id="modalMarksInput" min="0" max="100" step="0.5" placeholder="Enter marks e.g. 85" />
+      </div>
+      <div class="marks-modal-field">
+        <label>Remarks (optional)</label>
+        <input type="text" id="modalRemarksInput" placeholder="e.g. Good presentation" maxlength="100" />
+      </div>
+
+      <div id="modalMsg" class="att-mark-msg" style="display:none;margin-bottom:10px;"></div>
+
+      <div style="display:flex;gap:10px;">
+        <button class="page-btn" style="background:#5ca8e8;" onclick="saveMarks()">💾 Save Marks</button>
+        <button class="page-btn" style="background:#4a5568;margin-top:0;" onclick="closeMarksModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let _modalTeamId = null;
+    // Mark attendance via input box
+    async function markStudent(action) {
+      const id  = document.getElementById("markId").value.trim().toUpperCase();
+      if (!id)  { showMarkMsg("Please enter an Attendance ID!", "error"); return; }
+      await doMark(id, action);
+    }
+
+    // Quick mark from table button
+    async function quickMark(id, action) {
+      await doMark(id, action);
+    }
+
+    async function doMark(id, action) {
+      try {
+        const res  = await fetch("/api/attendance/mark", {
+          method: "POST", headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ attendance_id: id, action })
+        });
+        const json = await res.json();
+        if (json.status === "ok") {
+          const icon = action === "present" ? "✅" : "❌";
+          showMarkMsg(`${icon} ${json.student} marked as ${action}!`, "success");
+          // Update row live without reload
+          const row = document.querySelector(`tr[data-id="${id}"]`);
+          if (row) {
+            row.className = `student-row ${action === "present" ? "row-present" : "row-absent"}`;
+            const badge = row.querySelector(".status-badge");
+            if (badge) {
+              badge.className = `status-badge ${action === "present" ? "status-present" : "status-absent"}`;
+              badge.textContent = action === "present" ? "✅ Present" : "❌ Absent";
+            }
+          }
+        } else {
+          showMarkMsg("⚠️ " + json.message, "error");
+        }
+      } catch { showMarkMsg("⚠️ Network error.", "error"); }
+    }
+
+    function showMarkMsg(msg, type) {
+      const el = document.getElementById("markMsg");
+      el.textContent   = msg;
+      el.style.display = "block";
+      el.style.background = type === "success" ? "rgba(77,196,122,.15)" : "rgba(231,76,60,.15)";
+      el.style.borderColor = type === "success" ? "#4dc47a" : "#e74c3c";
+      el.style.color   = type === "success" ? "#4dc47a" : "#e74c3c";
+      setTimeout(() => el.style.display = "none", 3000);
+    }
+
+    // Search / filter table
+    document.getElementById("searchBtn").addEventListener("click", filterTable);
+    document.getElementById("searchInput").addEventListener("keyup", e => {
+      if (e.key === "Enter") filterTable();
+    });
+
+    function filterTable() {
+      const q    = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#tableBody .student-row");
+      rows.forEach(row => {
+        const name  = row.dataset.name.toLowerCase();
+        const id    = row.dataset.id.toLowerCase();
+        const phone = row.dataset.phone.toLowerCase();
+        row.style.display = (!q || name.includes(q) || id.includes(q) || phone.includes(q)) ? "" : "none";
+      });
+    }
+
+    // Filter teams table
+    document.getElementById("teamSearch").addEventListener("keyup", e => {
+      if (e.key === "Enter") filterTeams();
+    });
+
+    function filterTeams() {
+      const q    = document.getElementById("teamSearch").value.toLowerCase();
+      const rows = document.querySelectorAll("#teamsBody .team-row");
+      rows.forEach(row => {
+        const name = row.dataset.name;
+        const id   = String(row.dataset.id);
+        row.style.display = (!q || name.includes(q) || id.includes(q)) ? "" : "none";
+      });
+    }
+
+    // ── Marks Modal ──────────────────────────────────────────────
+    function openMarksModal(teamId, teamName, currentMarks, currentRemarks) {
+      _modalTeamId = teamId;
+      document.getElementById("modalTeamName").textContent  = "Team: " + teamName;
+      document.getElementById("modalMarksInput").value      = currentMarks || "";
+      document.getElementById("modalRemarksInput").value    = currentRemarks || "";
+      document.getElementById("modalMsg").style.display     = "none";
+      document.getElementById("marksModal").style.display   = "flex";
+      document.getElementById("modalMarksInput").focus();
+    }
+
+    function closeMarksModal() {
+      document.getElementById("marksModal").style.display = "none";
+      _modalTeamId = null;
+    }
+
+    // Close modal on overlay click
+    document.getElementById("marksModal").addEventListener("click", function(e) {
+      if (e.target === this) closeMarksModal();
+    });
+
+    async function saveMarks() {
+      const marks   = document.getElementById("modalMarksInput").value.trim();
+      const remarks = document.getElementById("modalRemarksInput").value.trim();
+      if (marks === "" || isNaN(marks)) {
+        showModalMsg("⚠️ Please enter valid marks!", "error"); return;
+      }
+      if (parseFloat(marks) < 0 || parseFloat(marks) > 100) {
+        showModalMsg("⚠️ Marks must be between 0 and 100!", "error"); return;
+      }
+      try {
+        const res  = await fetch("/api/marks/save", {
+          method: "POST", headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ team_id: _modalTeamId, marks: parseFloat(marks), remarks })
+        });
+        const json = await res.json();
+        if (json.status === "ok") {
+          showModalMsg("✅ Marks saved!", "success");
+          // Update cell live
+          const cell = document.getElementById("marks-" + _modalTeamId);
+          if (cell) {
+            const disp = Number.isInteger(parseFloat(marks)) ? parseInt(marks) : parseFloat(marks);
+            cell.innerHTML = `<span class="att-marks-badge">${disp}/100</span>` +
+              (remarks ? `<div style="font-size:11px;color:#8ba3b8;margin-top:2px;">${remarks}</div>` : "");
+          }
+          setTimeout(() => closeMarksModal(), 1000);
+        } else {
+          showModalMsg("⚠️ " + json.message, "error");
+        }
+      } catch { showModalMsg("⚠️ Network error.", "error"); }
+    }
+
+    function showModalMsg(msg, type) {
+      const el = document.getElementById("modalMsg");
+      el.textContent   = msg;
+      el.style.display = "block";
+      el.style.background  = type === "success" ? "rgba(77,196,122,.15)" : "rgba(231,76,60,.15)";
+      el.style.borderColor = type === "success" ? "#4dc47a" : "#e74c3c";
+      el.style.color       = type === "success" ? "#4dc47a" : "#e74c3c";
+    }
+  </script>
+</body>
+</html>

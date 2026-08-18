@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Attendance — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap" style="max-width:900px;">
+    <a class="back-btn" href="/">← Back to Chat</a>
+
+    <div class="page-header">
+      <span class="page-icon">📋</span>
+      <div>
+        <h1>Student Attendance</h1>
+        <p>AI &amp; Technology Workshop — 14 August 2026 | SNJB Chandwad</p>
+      </div>
+    </div>
+
+    <!-- Stats cards -->
+    <div class="att-stats">
+      <div class="att-stat-card total">
+        <span class="att-stat-num">{{ total }}</span>
+        <span class="att-stat-label">Total Registered</span>
+      </div>
+      <div class="att-stat-card present">
+        <span class="att-stat-num">{{ present }}</span>
+        <span class="att-stat-label">Present</span>
+      </div>
+      <div class="att-stat-card absent">
+        <span class="att-stat-num">{{ absent }}</span>
+        <span class="att-stat-label">Absent</span>
+      </div>
+    </div>
+
+    <!-- Search + Quick mark -->
+    <div class="att-search-row">
+      <input type="text" id="searchInput" placeholder="Search by name, ID or phone…" />
+      <button class="page-btn" id="searchBtn">🔍 Search</button>
+      <button class="page-btn" style="background:#4dc47a;" id="refreshBtn" onclick="location.reload()">🔄 Refresh</button>
+    </div>
+
+    <!-- Quick mark by ID -->
+    <div class="att-mark-row">
+      <input type="text" id="markId" placeholder="Enter Attendance ID (e.g. ATT-0001)" style="text-transform:uppercase"/>
+      <button class="page-btn" style="background:#4dc47a;" onclick="markStudent('present')">✅ Mark Present</button>
+      <button class="page-btn" style="background:#e74c3c;" onclick="markStudent('absent')">❌ Mark Absent</button>
+    </div>
+    <div id="markMsg" class="att-mark-msg" style="display:none"></div>
+
+    <!-- Students table -->
+    <div class="att-table-wrap">
+      <table class="att-table" id="studentsTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Attendance ID</th>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>College</th>
+            <th>Registered On</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          {% for s in students %}
+          <tr class="student-row {{ 'row-present' if s.present == 1 else 'row-absent' }}" data-id="{{ s.attendance_id }}" data-name="{{ s.name }}" data-phone="{{ s.phone }}">
+            <td>{{ loop.index }}</td>
+            <td><span class="att-id-badge">{{ s.attendance_id }}</span></td>
+            <td><strong style="color:var(--tg-accent)">{{ s.roll_no if s.roll_no and s.roll_no != 'blank' else '-' }}</strong></td>
+            <td><strong>{{ s.name }}</strong></td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.college }}</td>
+            <td>{{ s.registered_at[:10] }}</td>
+            <td>
+              <span class="status-badge {{ 'status-present' if s.present == 1 else 'status-absent' }}">
+                {{ '✅ Present' if s.present == 1 else '❌ Absent' }}
+              </span>
+            </td>
+            <td>
+              <button class="att-action-btn present-btn" onclick="quickMark('{{ s.attendance_id }}', 'present')">✅</button>
+              <button class="att-action-btn absent-btn"  onclick="quickMark('{{ s.attendance_id }}', 'absent')">❌</button>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="8" style="text-align:center;padding:32px;color:var(--tg-muted)">No students registered yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--tg-muted)">
+      Total {{ total }} student(s) registered &nbsp;|&nbsp; Coordinator: Miss. Sandhya Aghav Mam — 9579001895
+    </div>
+  </div>
+
+  <script>
+    // Mark attendance via input box
+    async function markStudent(action) {
+      const id  = document.getElementById("markId").value.trim().toUpperCase();
+      if (!id)  { showMarkMsg("Please enter an Attendance ID!", "error"); return; }
+      await doMark(id, action);
+    }
+
+    // Quick mark from table button
+    async function quickMark(id, action) {
+      await doMark(id, action);
+    }
+
+    async function doMark(id, action) {
+      try {
+        const res  = await fetch("/api/attendance/mark", {
+          method: "POST", headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ attendance_id: id, action })
+        });
+        const json = await res.json();
+        if (json.status === "ok") {
+          const icon = action === "present" ? "✅" : "❌";
+          showMarkMsg(`${icon} ${json.student} marked as ${action}!`, "success");
+          // Update row live without reload
+          const row = document.querySelector(`tr[data-id="${id}"]`);
+          if (row) {
+            row.className = `student-row ${action === "present" ? "row-present" : "row-absent"}`;
+            const badge = row.querySelector(".status-badge");
+            if (badge) {
+              badge.className = `status-badge ${action === "present" ? "status-present" : "status-absent"}`;
+              badge.textContent = action === "present" ? "✅ Present" : "❌ Absent";
+            }
+          }
+        } else {
+          showMarkMsg("⚠️ " + json.message, "error");
+        }
+      } catch { showMarkMsg("⚠️ Network error.", "error"); }
+    }
+
+    function showMarkMsg(msg, type) {
+      const el = document.getElementById("markMsg");
+      el.textContent   = msg;
+      el.style.display = "block";
+      el.style.background = type === "success" ? "rgba(77,196,122,.15)" : "rgba(231,76,60,.15)";
+      el.style.borderColor = type === "success" ? "#4dc47a" : "#e74c3c";
+      el.style.color   = type === "success" ? "#4dc47a" : "#e74c3c";
+      setTimeout(() => el.style.display = "none", 3000);
+    }
+
+    // Search / filter table
+    document.getElementById("searchBtn").addEventListener("click", filterTable);
+    document.getElementById("searchInput").addEventListener("keyup", e => {
+      if (e.key === "Enter") filterTable();
+    });
+
+    function filterTable() {
+      const q    = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#tableBody .student-row");
+      rows.forEach(row => {
+        const name  = row.dataset.name.toLowerCase();
+        const id    = row.dataset.id.toLowerCase();
+        const phone = row.dataset.phone.toLowerCase();
+        row.style.display = (!q || name.includes(q) || id.includes(q) || phone.includes(q)) ? "" : "none";
+      });
+    }
+  </script>
+</body>
+</html>

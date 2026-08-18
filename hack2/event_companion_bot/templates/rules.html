@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Rules — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap">
+    <a class="back-btn" href="/">← Back to Chat</a>
+    <div class="page-header">
+      <span class="page-icon">📜</span>
+      <div>
+        <h1>Event Rules</h1>
+        <p>Please read carefully before attending</p>
+      </div>
+    </div>
+
+    <div class="rules-page-list">
+      {% for rule in rules %}
+      <div class="rules-page-item" style="animation-delay: {{ loop.index0 * 0.08 }}s">
+        <span class="rule-num">{{ loop.index }}</span>
+        <span class="rule-text">{{ rule }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="page-info-box" style="margin-top:24px;">
+      <p>⚠️ Violation of rules may lead to <strong>disqualification</strong>.</p>
+      <p>📞 Contact: <strong>Miss. Sandhya Aghav Mam</strong> — 9579001895</p>
+    </div>
+  </div>
+</body>
+</html>

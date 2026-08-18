@@ -1,0 +1,310 @@
+{
+  "event": {
+    "name": "AI & Technology Workshop",
+    "date": "2026-08-14",
+    "time": "10:00 AM to 4:00 PM",
+    "tagline": "Learn. Innovate. Inspire.",
+    "registration": "Free",
+    "organizer": "AIDS Department",
+    "registration_deadline": "2026-08-10"
+  },
+  "schedule": [
+    { "time": "09:00 AM", "title": "Registration & Check-in",   "icon": "📋" },
+    { "time": "10:00 AM", "title": "Opening Ceremony",          "icon": "🎉" },
+    { "time": "11:00 AM", "title": "AI Workshop Session 1",     "icon": "🤖" },
+    { "time": "01:00 PM", "title": "Lunch Break",               "icon": "🍽️" },
+    { "time": "02:00 PM", "title": "Technology Presentation",   "icon": "💻" },
+    { "time": "04:00 PM", "title": "Certificate Distribution",  "icon": "🏆" }
+  ],
+  "venue": {
+    "college": "SNJB KBJ College of Engineering, Chandwad",
+    "hall": "Lab No. 235 — 2nd Floor, Left Side (AIDS Dept.)",
+    "address": "SNJB KBJ College of Engineering, Chandwad, Nashik District, Maharashtra – 423101",
+    "maps_url": "https://maps.google.com/?q=SNJB+KBJ+College+of+Engineering+Chandwad"
+  },
+  "rules": [
+    "Complete registration before the event day (Deadline: 10 August 2026).",
+    "Carry your valid college ID card at all times.",
+    "Report to the venue at least 15 minutes before your session.",
+    "Follow all instructions given by AIDS Department coordinators.",
+    "Maintain discipline and respect fellow participants.",
+    "Mobile phones must be on silent during sessions.",
+    "Certificates will be given only to participants who attend the full session."
+  ],
+  "prizes": [
+    { "rank": "1st",  "medal": "🥇", "amount": "₹2,000 Cash + Certificate", "label": "Gold" },
+    { "rank": "2nd",  "medal": "🥈", "amount": "₹1,500 Cash + Certificate", "label": "Silver" },
+    { "rank": "3rd",  "medal": "🥉", "amount": "₹1,000 Cash + Certificate", "label": "Bronze" }
+  ],
+  "faqs": [
+    {
+      "keywords": ["where", "venue", "location", "place", "held", "seminar", "hall"],
+      "question": "Where is the event?",
+      "answer": "The event is held at SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor, Left Side (AIDS Dept.), Nashik District, Maharashtra – 423101."
+    },
+    {
+      "keywords": ["when", "ai workshop", "workshop", "time", "session", "start"],
+      "question": "When is the AI Workshop?",
+      "answer": "The AI & Technology Workshop is on 14 August 2026 from 10:00 AM to 4:00 PM. Please report by 9:45 AM."
+    },
+    {
+      "keywords": ["rules", "regulation", "guideline", "conduct", "discipline"],
+      "question": "What are the rules?",
+      "answer": "Key rules: (1) Carry your college ID. (2) Report 15 minutes early. (3) Follow AIDS Department coordinator instructions. (4) Phones on silent. (5) Attend full session for certificate."
+    },
+    {
+      "keywords": ["prize", "prizes", "award", "awards", "certificate", "reward", "winning", "trophy", "what"],
+      "question": "What are the prizes?",
+      "answer": "Amazing prizes await! 🥇 1st Prize — ₹2,000 Cash + Certificate | 🥈 2nd Prize — ₹1,500 Cash + Certificate | 🥉 3rd Prize — ₹1,000 Cash + Certificate. All participants get a participation certificate by AIDS Department!"
+    },
+    {
+      "keywords": ["report", "arrive", "reach", "come", "early", "checkin"],
+      "question": "When should I report?",
+      "answer": "Please arrive at least 15 minutes before your session. Registration check-in opens at 09:00 AM on 15 August 2026."
+    },
+    {
+      "keywords": ["who", "participate", "eligible", "student", "college", "join"],
+      "question": "Who can participate?",
+      "answer": "All students of SNJB College of Engineering, Chandwad can participate. Registration is completely FREE!"
+    },
+    {
+      "keywords": ["register", "registration", "sign up", "enroll", "free", "cost", "fee"],
+      "question": "How do I register? Is it free?",
+      "answer": "Registration is 100% FREE! Click the Registration button in the menu, fill your Name, Email, Phone and College, then submit. Deadline: 10 August 2026."
+    },
+    {
+      "keywords": ["schedule", "agenda", "timetable", "program", "event", "timing"],
+      "question": "What is the event schedule?",
+      "answer": "09:00 AM – Check-in | 10:00 AM – Opening Ceremony | 11:00 AM – AI Session | 01:00 PM – Lunch | 02:00 PM – Tech Presentation | 04:00 PM – Certificate Distribution."
+    },
+    {
+      "keywords": ["date", "day", "which day", "august", "2026"],
+      "question": "When is the event?",
+      "answer": "The AI & Technology Workshop is on 14 August 2026 (Friday). Registration deadline is 10 August 2026. Entry is FREE!"
+    },
+    {
+      "keywords": ["contact", "help", "support", "coordinator", "organizer", "aids", "department"],
+      "question": "Who do I contact for help?",
+      "answer": "The event coordinator is Miss. Sandhya Aghav Mam from the AIDS Department, SNJB College of Engineering, Chandwad. Contact: 9579001895. Feel free to call her for any queries!"
+    },
+    {
+      "keywords": ["topic", "subject", "learn", "content", "syllabus", "cover"],
+      "question": "What topics will be covered?",
+      "answer": "The workshop covers: Artificial Intelligence basics, Machine Learning, Data Science, Real-world AI applications, and live Technology demonstrations by experts."
+    },
+    {
+      "keywords": ["online", "offline", "mode", "virtual", "physical"],
+      "question": "Is the workshop online or offline?",
+      "answer": "The AI & Technology Workshop is an OFFLINE event at SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor Left Side, AIDS Department. Physical attendance required for certificate."
+    },
+    {
+      "keywords": ["food", "lunch", "meal", "snack", "refreshment"],
+      "question": "Is food provided?",
+      "answer": "Yes! Lunch and refreshments are provided to all registered participants during the lunch break (1:00 PM) by the AIDS Department."
+    },
+    {
+      "keywords": ["deadline", "last date", "last day", "register by", "cutoff"],
+      "question": "What is the registration deadline?",
+      "answer": "The last date for registration is 10 August 2026. Register early to confirm your seat. Registration is FREE!"
+    },
+    {
+      "keywords": ["reminder", "remind", "notify", "alert", "countdown"],
+      "question": "Can I set a reminder?",
+      "answer": "Yes! Click the Reminders button in the menu to see a live countdown timer to the AI & Technology Workshop on 14 August 2026."
+    },
+    {
+      "keywords": ["coordinator", "who", "incharge", "teacher", "faculty", "sandhya", "aghav", "mam", "miss"],
+      "question": "Who is the coordinator of this event?",
+      "answer": "The coordinator of this event is Miss. Sandhya Aghav Mam from the AIDS Department, SNJB College of Engineering, Chandwad. Contact Number: 9579001895."
+    }
+  ],
+  "help": {
+    "title": "Need Help?",
+    "description": "For any issue not covered here, please contact the AIDS Department event coordinator at SNJB College of Engineering, Chandwad.",
+    "sections": [
+      "📅 Event details",
+      "📝 Registration help",
+      "📍 Venue & directions",
+      "🏆 Prize information",
+      "🔔 Reminder support",
+      "⭐ Feedback"
+    ]
+  },
+  "emergency": {
+    "title": "🆘 Emergency Helpline",
+    "subtitle": "In case of any emergency during the event, contact immediately:",
+    "contacts": [
+      {
+        "name": "Miss. Sandhya Aghav Mam",
+        "role": "Event Coordinator — AIDS Dept.",
+        "phone": "9579001895",
+        "available": "During event hours"
+      },
+      {
+        "name": "College Security",
+        "role": "SNJB Campus Security",
+        "phone": "02556-264101",
+        "available": "24×7"
+      },
+      {
+        "name": "Medical Emergency",
+        "role": "Ambulance / Hospital",
+        "phone": "108",
+        "available": "24×7 Free"
+      },
+      {
+        "name": "Police Helpline",
+        "role": "Chandwad Police Station",
+        "phone": "100",
+        "available": "24×7"
+      }
+    ]
+  },
+  "medical": {
+    "title": "🏥 Medical Helpline",
+    "subtitle": "Health emergency? Contact immediately — available 24×7",
+    "contacts": [
+      {
+        "name": "National Ambulance",
+        "role": "Government Ambulance Service",
+        "phone": "108",
+        "color": "red",
+        "available": "24×7 Free"
+      },
+      {
+        "name": "Women Helpline",
+        "role": "Women Safety & Emergency",
+        "phone": "1091",
+        "color": "pink",
+        "available": "24×7"
+      },
+      {
+        "name": "Child Helpline",
+        "role": "Child Safety Emergency",
+        "phone": "1098",
+        "color": "orange",
+        "available": "24×7"
+      },
+      {
+        "name": "Chandwad Hospital",
+        "role": "Nearest Government Hospital",
+        "phone": "02556-264200",
+        "color": "blue",
+        "available": "24×7"
+      },
+      {
+        "name": "Mental Health Helpline",
+        "role": "iCall — Psychological Support",
+        "phone": "9152987821",
+        "color": "purple",
+        "available": "Mon–Sat 8AM–10PM"
+      },
+      {
+        "name": "First Aid — On Campus",
+        "role": "SNJB College Medical Room",
+        "phone": "02556-264101",
+        "color": "green",
+        "available": "During event hours"
+      }
+    ]
+  },
+  "team_types": ["Solo", "Pair (2)", "Small Team (3–4)", "Large Team (5+)"],
+  "teams": [
+    { "team_id": 101, "team_name": "NOVA",              "num_students": 4, "lab_no": 235 },
+    { "team_id": 102, "team_name": "QuadLoop",           "num_students": 4, "lab_no": 235 },
+    { "team_id": 103, "team_name": "Innovators",         "num_students": 4, "lab_no": 235 },
+    { "team_id": 104, "team_name": "Coders Syndicate",   "num_students": 4, "lab_no": 235 },
+    { "team_id": 105, "team_name": "AI Architects!",     "num_students": 3, "lab_no": 235 },
+    { "team_id": 106, "team_name": "Neural Nexus",       "num_students": 4, "lab_no": 235 },
+    { "team_id": 107, "team_name": "Group1",             "num_students": 4, "lab_no": 235 },
+    { "team_id": 108, "team_name": "Unknown Users",      "num_students": 3, "lab_no": 235 },
+    { "team_id": 109, "team_name": "AgentX",             "num_students": 3, "lab_no": 235 },
+    { "team_id": 110, "team_name": "TrioAI",             "num_students": 3, "lab_no": 236 },
+    { "team_id": 111, "team_name": "Brain Bots",         "num_students": 3, "lab_no": 236 },
+    { "team_id": 112, "team_name": "Team NOVA",          "num_students": 4, "lab_no": 236 },
+    { "team_id": 113, "team_name": "Om sangale",         "num_students": 1, "lab_no": 236 },
+    { "team_id": 114, "team_name": "AgentX Innovators",  "num_students": 4, "lab_no": 236 },
+    { "team_id": 115, "team_name": "The Innovators",     "num_students": 4, "lab_no": 236 },
+    { "team_id": 116, "team_name": "BrainBots",          "num_students": 4, "lab_no": 236 },
+    { "team_id": 117, "team_name": "Ai agents",          "num_students": 4, "lab_no": 236 },
+    { "team_id": 118, "team_name": "Ai avengers",        "num_students": 3, "lab_no": 236 },
+    { "team_id": 119, "team_name": "Autom8s",            "num_students": 3, "lab_no": 238 },
+    { "team_id": 120, "team_name": "WhiteCoders",        "num_students": 4, "lab_no": 238 },
+    { "team_id": 121, "team_name": "Automind",           "num_students": 3, "lab_no": 238 },
+    { "team_id": 122, "team_name": "The S -team",        "num_students": 4, "lab_no": 238 }
+  ],
+  "multilang": {
+    "hi": {
+      "greeting": "नमस्ते! 👋 मैं आपका AI & Technology Workshop बॉट हूँ। मैं हिंदी में भी मदद कर सकता हूँ! 😊",
+      "venue": "यह कार्यक्रम SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor, Left Side (AIDS Dept.), Nashik जिले, महाराष्ट्र में आयोजित है।",
+      "schedule": "कार्यक्रम का समय: 09:00 बजे — चेक-इन | 10:00 बजे — उद्घाटन | 11:00 बजे — AI Workshop | 01:00 बजे — दोपहर का भोजन | 02:00 बजे — Tech Presentation | 04:00 बजे — Certificate वितरण।",
+      "register": "Registration बिल्कुल मुफ्त है! मेनू में Registration बटन दबाएं, अपना नाम, Email, Phone और College भरें। अंतिम तिथि: 10 August 2026।",
+      "prizes": "पुरस्कार: 🥇 1st — ₹2,000 Cash + Certificate | 🥈 2nd — ₹1,500 Cash + Certificate | 🥉 3rd — ₹1,000 Cash + Certificate। सभी प्रतिभागियों को Certificate मिलेगा!",
+      "rules": "नियम: (1) College ID card साथ लाएं। (2) 15 मिनट पहले पहुंचें। (3) Session के दौरान फ़ोन Silent रखें। (4) पूरे Session में उपस्थित रहें।",
+      "date": "AI & Technology Workshop 14 August 2026 (शुक्रवार) को सुबह 10:00 बजे से शाम 4:00 बजे तक है।",
+      "contact": "संपर्क: Miss. Sandhya Aghav Mam — AIDS Department, SNJB College Chandwad। फोन: 9579001895",
+      "emergency": "🆘 आपातकालीन नंबर: Coordinator — 9579001895 | Ambulance — 108 | Police — 100 | College Security — 02556-264101",
+      "fallback": "मुझे यकीन नहीं है। कृपया Miss. Sandhya Aghav Mam से संपर्क करें — 9579001895। या पूछें: venue, schedule, prizes, rules, registration।"
+    },
+    "mr": {
+      "greeting": "नमस्कार! 👋 मी तुमचा AI & Technology Workshop बॉट आहे। मी मराठीतही मदत करू शकतो! 😊",
+      "venue": "हा कार्यक्रम SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor, Left Side (AIDS Dept.), नाशिक जिल्हा, महाराष्ट्र येथे आहे।",
+      "schedule": "कार्यक्रमाचे वेळापत्रक: 09:00 — Check-in | 10:00 — उद्घाटन | 11:00 — AI Workshop | 01:00 — जेवण | 02:00 — Tech Presentation | 04:00 — Certificate वितरण।",
+      "register": "Registration पूर्णपणे मोफत आहे! Registration बटण दाबा, नाव, Email, Phone आणि College भरा। शेवटची तारीख: 10 August 2026।",
+      "prizes": "बक्षिसे: 🥇 1st — ₹2,000 Cash + Certificate | 🥈 2nd — ₹1,500 Cash + Certificate | 🥉 3rd — ₹1,000 Cash + Certificate। सर्व सहभागींना Certificate मिळेल!",
+      "rules": "नियम: (1) College ID card आणा। (2) 15 मिनिटे आधी या। (3) Session दरम्यान Phone Silent ठेवा। (4) पूर्ण Session मध्ये उपस्थित राहा।",
+      "date": "AI & Technology Workshop 14 August 2026 (शुक्रवार) रोजी सकाळी 10:00 ते संध्याकाळी 4:00 पर्यंत आहे।",
+      "contact": "संपर्क: Miss. Sandhya Aghav Mam — AIDS Dept., SNJB College Chandwad। फोन: 9579001895",
+      "emergency": "🆘 आणीबाणी क्रमांक: Coordinator — 9579001895 | Ambulance — 108 | Police — 100 | College Security — 02556-264101",
+      "fallback": "मला खात्री नाही. कृपया Miss. Sandhya Aghav Mam यांच्याशी संपर्क करा — 9579001895। किंवा विचारा: venue, schedule, prizes, rules, registration।"
+    },
+    "ml": {
+      "greeting": "നമസ്കാരം! 👋 ഞാൻ നിങ്ങളുടെ AI & Technology Workshop ബോട്ടാണ്. എനിക്ക് മലയാളത്തിലും സഹായിക്കാൻ കഴിയും! 😊",
+      "venue": "ഈ പരിപാടി SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor, Left Side (AIDS Dept.), Nashik District, Maharashtra – 423101 ൽ നടക്കുന്നു.",
+      "schedule": "പരിപാടി ഷെഡ്യൂൾ: 09:00 — Check-in | 10:00 — ഉദ്ഘാടനം | 11:00 — AI Workshop | 01:00 — ഉച്ചഭക്ഷണം | 02:00 — Tech Presentation | 04:00 — Certificate വിതരണം.",
+      "register": "Registration തീർത്തും സൗജന്യമാണ്! Registration ബട്ടൺ അമർത്തി നിങ്ങളുടെ പേര്, Email, Phone, College നൽകുക. അവസാന തീയതി: 10 August 2026.",
+      "prizes": "സമ്മാനങ്ങൾ: 🥇 1st — ₹2,000 Cash + Certificate | 🥈 2nd — ₹1,500 Cash + Certificate | 🥉 3rd — ₹1,000 Cash + Certificate. എല്ലാ പങ്കാളികൾക്കും Certificate ലഭിക്കും!",
+      "rules": "നിയമങ്ങൾ: (1) College ID card കൊണ്ടുവരിക. (2) 15 മിനിറ്റ് നേരത്തെ എത്തുക. (3) Session-ൽ Phone Silent ആക്കുക. (4) മുഴുവൻ Session-ലും പങ്കെടുക്കുക.",
+      "date": "AI & Technology Workshop 14 August 2026 (വെള്ളിയാഴ്ച) രാവിലെ 10:00 മുതൽ വൈകുന്നേരം 4:00 വരെ.",
+      "contact": "ബന്ധപ്പെടുക: Miss. Sandhya Aghav Mam — AIDS Dept., SNJB College Chandwad. ഫോൺ: 9579001895",
+      "emergency": "🆘 അടിയന്തര നമ്പറുകൾ: Coordinator — 9579001895 | Ambulance — 108 | Police — 100 | College Security — 02556-264101",
+      "fallback": "എനിക്ക് ഉറപ്പില്ല. Miss. Sandhya Aghav Mam-നെ ബന്ധപ്പെടുക — 9579001895. അല്ലെങ്കിൽ ചോദിക്കൂ: venue, schedule, prizes, rules, registration."
+    },
+    "gu": {
+      "greeting": "નમસ્તે! 👋 હું તમારો AI & Technology Workshop બૉટ છું. હું ગુજરાતીમાં પણ મદદ કરી શકું છું! 😊",
+      "venue": "આ કાર્યક્રમ SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor, Left Side (AIDS Dept.), Nashik જિલ્લો, મહારાષ્ટ્ર – 423101 માં યોજાશે.",
+      "schedule": "કાર્યક્રમ સમય: 09:00 — Check-in | 10:00 — ઉદ્ઘાટન | 11:00 — AI Workshop | 01:00 — બપોરનું ભોજન | 02:00 — Tech Presentation | 04:00 — Certificate વિતરણ.",
+      "register": "Registration સંપૂર્ણ મફત છે! Registration બટન દબાવો, નામ, Email, Phone અને College ભરો. છેલ્લી તારીખ: 10 August 2026.",
+      "prizes": "પુરસ્કારો: 🥇 1st — ₹2,000 Cash + Certificate | 🥈 2nd — ₹1,500 Cash + Certificate | 🥉 3rd — ₹1,000 Cash + Certificate. તમામ સહભાગીઓને Certificate મળશે!",
+      "rules": "નિયમો: (1) College ID card લઈ આવો. (2) 15 મિનિટ વહેલા આવો. (3) Session દરમિયાન Phone Silent રાખો. (4) સંપૂર્ણ Session માં હાજર રહો.",
+      "date": "AI & Technology Workshop 14 August 2026 (શુક્રવાર) સવારે 10:00 થી સાંજે 4:00 સુધી છે.",
+      "contact": "સંપર્ક: Miss. Sandhya Aghav Mam — AIDS Dept., SNJB College Chandwad. ફોન: 9579001895",
+      "emergency": "🆘 કટોકટી નંબર: Coordinator — 9579001895 | Ambulance — 108 | Police — 100 | College Security — 02556-264101",
+      "fallback": "મને ખાતરી નથી. Miss. Sandhya Aghav Mam નો સંપર્ક કરો — 9579001895. અથવા પૂછો: venue, schedule, prizes, rules, registration."
+    },
+    "pa": {
+      "greeting": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ! 👋 ਮੈਂ ਤੁਹਾਡਾ AI & Technology Workshop ਬੋਟ ਹਾਂ। ਮੈਂ ਪੰਜਾਬੀ ਵਿੱਚ ਵੀ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ! 😊",
+      "venue": "ਇਹ ਸਮਾਗਮ SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor, Left Side (AIDS Dept.), Nashik ਜ਼ਿਲ੍ਹਾ, ਮਹਾਰਾਸ਼ਟਰ – 423101 ਵਿੱਚ ਹੋਵੇਗਾ।",
+      "schedule": "ਸਮਾਗਮ ਦਾ ਸਮਾਂ: 09:00 — Check-in | 10:00 — ਉਦਘਾਟਨ | 11:00 — AI Workshop | 01:00 — ਦੁਪਹਿਰ ਦਾ ਖਾਣਾ | 02:00 — Tech Presentation | 04:00 — Certificate ਵੰਡ।",
+      "register": "Registration ਬਿਲਕੁਲ ਮੁਫ਼ਤ ਹੈ! Registration ਬਟਨ ਦਬਾਓ, ਆਪਣਾ ਨਾਮ, Email, Phone ਅਤੇ College ਭਰੋ। ਆਖਰੀ ਤਾਰੀਖ: 10 August 2026।",
+      "prizes": "ਇਨਾਮ: 🥇 1st — ₹2,000 Cash + Certificate | 🥈 2nd — ₹1,500 Cash + Certificate | 🥉 3rd — ₹1,000 Cash + Certificate। ਸਾਰੇ ਭਾਗੀਦਾਰਾਂ ਨੂੰ Certificate ਮਿਲੇਗਾ!",
+      "rules": "ਨਿਯਮ: (1) College ID card ਨਾਲ ਲਿਆਓ। (2) 15 ਮਿੰਟ ਪਹਿਲਾਂ ਪਹੁੰਚੋ। (3) Session ਦੌਰਾਨ Phone Silent ਰੱਖੋ। (4) ਪੂਰੇ Session ਵਿੱਚ ਹਾਜ਼ਰ ਰਹੋ।",
+      "date": "AI & Technology Workshop 14 August 2026 (ਸ਼ੁੱਕਰਵਾਰ) ਨੂੰ ਸਵੇਰੇ 10:00 ਤੋਂ ਸ਼ਾਮ 4:00 ਵਜੇ ਤੱਕ ਹੈ।",
+      "contact": "ਸੰਪਰਕ: Miss. Sandhya Aghav Mam — AIDS Dept., SNJB College Chandwad। ਫ਼ੋਨ: 9579001895",
+      "emergency": "🆘 ਐਮਰਜੈਂਸੀ ਨੰਬਰ: Coordinator — 9579001895 | Ambulance — 108 | Police — 100 | College Security — 02556-264101",
+      "fallback": "ਮੈਨੂੰ ਯਕੀਨ ਨਹੀਂ। ਕਿਰਪਾ ਕਰਕੇ Miss. Sandhya Aghav Mam ਨਾਲ ਸੰਪਰਕ ਕਰੋ — 9579001895। ਜਾਂ ਪੁੱਛੋ: venue, schedule, prizes, rules, registration।"
+    },
+    "te": {
+      "greeting": "నమస్కారం! 👋 నేను మీ AI & Technology Workshop బాట్‌ని. నేను తెలుగులో కూడా సహాయం చేయగలను! 😊",
+      "venue": "ఈ కార్యక్రమం SNJB KBJ College of Engineering, Chandwad — Lab No. 235, 2nd Floor, Left Side (AIDS Dept.), Nashik జిల్లా, మహారాష్ట్ర – 423101 లో జరుగుతుంది.",
+      "schedule": "కార్యక్రమ వేళలు: 09:00 — Check-in | 10:00 — ప్రారంభ వేడుక | 11:00 — AI Workshop | 01:00 — మధ్యాహ్న భోజనం | 02:00 — Tech Presentation | 04:00 — Certificate పంపిణీ.",
+      "register": "Registration పూర్తిగా ఉచితం! Registration బటన్ నొక్కి మీ పేరు, Email, Phone, College నమోదు చేయండి. చివరి తేదీ: 10 August 2026.",
+      "prizes": "బహుమతులు: 🥇 1st — ₹2,000 Cash + Certificate | 🥈 2nd — ₹1,500 Cash + Certificate | 🥉 3rd — ₹1,000 Cash + Certificate. అందరు పాల్గొనేవారికి Certificate లభిస్తుంది!",
+      "rules": "నియమాలు: (1) College ID card తీసుకురండి. (2) 15 నిమిషాల ముందే రండి. (3) Session సమయంలో Phone Silent పెట్టండి. (4) పూర్తి Session లో హాజరుగా ఉండండి.",
+      "date": "AI & Technology Workshop 14 August 2026 (శుక్రవారం) ఉదయం 10:00 నుండి సాయంత్రం 4:00 వరకు ఉంది.",
+      "contact": "సంప్రదించండి: Miss. Sandhya Aghav Mam — AIDS Dept., SNJB College Chandwad. ఫోన్: 9579001895",
+      "emergency": "🆘 అత్యవసర నంబర్లు: Coordinator — 9579001895 | Ambulance — 108 | Police — 100 | College Security — 02556-264101",
+      "fallback": "నాకు తెలియదు. దయచేసి Miss. Sandhya Aghav Mam ని సంప్రదించండి — 9579001895. లేదా అడగండి: venue, schedule, prizes, rules, registration."
+    }
+  }
+}

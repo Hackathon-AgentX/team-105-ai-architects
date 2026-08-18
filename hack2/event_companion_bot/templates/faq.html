@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>FAQ — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap">
+    <a class="back-btn" href="/">← Back to Chat</a>
+    <div class="page-header">
+      <span class="page-icon">❓</span>
+      <div>
+        <h1>FAQ — Ask Me Anything</h1>
+        <p>AI &amp; Technology Workshop</p>
+      </div>
+    </div>
+
+    <div class="faq-page-search">
+      <input type="text" id="faqInput" placeholder="Type your question here…" />
+      <button id="faqAsk" class="page-btn">Ask →</button>
+    </div>
+
+    <div class="faq-page-answer" id="faqAnswer">
+      <span style="color:var(--tg-muted)">Your answer will appear here…</span>
+    </div>
+
+    <div class="faq-page-chips">
+      <span class="faq-chip" data-q="Where is the event?">Where is the event?</span>
+      <span class="faq-chip" data-q="When is the AI Workshop?">When is the workshop?</span>
+      <span class="faq-chip" data-q="What are the prizes?">What are the prizes?</span>
+      <span class="faq-chip" data-q="Who can participate?">Who can participate?</span>
+      <span class="faq-chip" data-q="What are the rules?">What are the rules?</span>
+      <span class="faq-chip" data-q="Who is the coordinator?">Who is the coordinator?</span>
+      <span class="faq-chip" data-q="Is registration free?">Is registration free?</span>
+      <span class="faq-chip" data-q="What topics will be covered?">What topics covered?</span>
+    </div>
+  </div>
+
+  <script>
+    const answerDiv = document.getElementById("faqAnswer");
+
+    async function askFAQ(query) {
+      if (!query.trim()) return;
+      answerDiv.style.opacity = "0.4";
+      answerDiv.textContent   = "🤖 Thinking…";
+      try {
+        const res  = await fetch("/api/faq", {
+          method: "POST", headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ query })
+        });
+        const json = await res.json();
+        answerDiv.style.opacity = "1";
+        answerDiv.textContent   = json.status === "ok" ? json.answer : json.message;
+      } catch {
+        answerDiv.style.opacity = "1";
+        answerDiv.textContent   = "⚠️ Network error. Please try again.";
+      }
+    }
+
+    document.getElementById("faqAsk").addEventListener("click", () => {
+      askFAQ(document.getElementById("faqInput").value.trim());
+    });
+    document.getElementById("faqInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") askFAQ(document.getElementById("faqInput").value.trim());
+    });
+    document.querySelectorAll(".faq-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        document.getElementById("faqInput").value = chip.dataset.q;
+        askFAQ(chip.dataset.q);
+      });
+    });
+  </script>
+</body>
+</html>

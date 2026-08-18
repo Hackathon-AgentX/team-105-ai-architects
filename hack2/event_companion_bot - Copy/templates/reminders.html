@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Reminders — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap">
+    <a class="back-btn" href="/">← Back to Chat</a>
+    <div class="page-header">
+      <span class="page-icon">⏰</span>
+      <div>
+        <h1>Event Countdown</h1>
+        <p>AI &amp; Technology Workshop — 14 August 2026</p>
+      </div>
+    </div>
+
+    <div class="remind-page-card">
+      <p class="remind-page-label">Time Remaining Until</p>
+      <p class="remind-page-name">🧠 AI &amp; Technology Workshop</p>
+      <div class="countdown-page-row">
+        <div class="cd-unit"><span id="cdD">00</span><small>days</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span id="cdH">00</span><small>hrs</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span id="cdM">00</span><small>min</small></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span id="cdS">00</span><small>sec</small></div>
+      </div>
+      <div class="cd-date-info">📅 14 August 2026 &nbsp;|&nbsp; ⏰ 10:00 AM</div>
+    </div>
+
+    <div class="page-info-box">
+      <p>📍 <strong>Venue:</strong> SNJB College of Engineering, Chandwad — Lab No. 235</p>
+      <p>✅ <strong>Entry is FREE</strong> — Register now to confirm your seat!</p>
+      <a href="/registration" class="page-btn" style="display:inline-block;margin-top:12px;text-decoration:none;">📝 Register Now</a>
+    </div>
+  </div>
+
+  <script>
+    const target = new Date("2026-08-14T10:00:00");
+    function tick() {
+      const now  = new Date();
+      let diff   = Math.max(0, Math.floor((target - now) / 1000));
+      const d = Math.floor(diff / 86400); diff -= d * 86400;
+      const h = Math.floor(diff / 3600);  diff -= h * 3600;
+      const m = Math.floor(diff / 60);    diff -= m * 60;
+      const s = diff;
+      const p = n => String(n).padStart(2,"0");
+      document.getElementById("cdD").textContent = p(d);
+      document.getElementById("cdH").textContent = p(h);
+      document.getElementById("cdM").textContent = p(m);
+      document.getElementById("cdS").textContent = p(s);
+      if (d===0 && h===0 && m===0 && s===0) {
+        document.querySelector(".remind-page-name").textContent = "🎉 The Workshop is Starting NOW!";
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Prizes — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap">
+    <a class="back-btn" href="/">← Back to Chat</a>
+    <div class="page-header">
+      <span class="page-icon">🏆</span>
+      <div>
+        <h1>Prize Pool</h1>
+        <p>AI &amp; Technology Workshop — 14 August 2026</p>
+      </div>
+    </div>
+
+    <div class="prizes-page-grid">
+      {% for prize in prizes %}
+      <div class="prize-page-card prize-{{ loop.index }}" style="animation-delay:{{ loop.index0 * 0.15 }}s">
+        <div class="prize-page-medal">{{ prize.medal }}</div>
+        <div class="prize-page-rank">{{ prize.rank }} Prize</div>
+        <div class="prize-page-amount">{{ prize.amount }}</div>
+        <div class="prize-page-label">{{ prize.label }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="page-info-box" style="margin-top:24px;text-align:center;">
+      <p>🎓 All participants receive a <strong>Participation Certificate</strong></p>
+      <p>Certificates issued by <strong>AIDS Department, SNJB Chandwad</strong></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Schedule — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap">
+    <a class="back-btn" href="/">← Back to Chat</a>
+    <div class="page-header">
+      <span class="page-icon">📅</span>
+      <div>
+        <h1>Event Schedule</h1>
+        <p>14 August 2026 &nbsp;|&nbsp; 10:00 AM – 4:00 PM</p>
+      </div>
+    </div>
+
+    <div class="schedule-page-list">
+      {% for item in schedule %}
+      <div class="schedule-page-item" style="animation-delay: {{ loop.index0 * 0.1 }}s">
+        <div class="sched-left">
+          <span class="sched-page-icon">{{ item.icon }}</span>
+        </div>
+        <div class="sched-right">
+          <span class="sched-page-time">{{ item.time }}</span>
+          <span class="sched-page-title">{{ item.title }}</span>
+        </div>
+        <div class="sched-dot"></div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="page-info-box">
+      <p>📍 <strong>Venue:</strong> SNJB College of Engineering, Chandwad — Lab No. 235</p>
+      <p>🎓 <strong>Organizer:</strong> AIDS Department</p>
+    </div>
+  </div>
+</body>
+</html>

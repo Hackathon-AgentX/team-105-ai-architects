@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI & Technology Workshop — SNJB Chandwad</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════ APP SHELL ═══════════════════ -->
+<div class="tg-app">
+
+  <!-- ── Sidebar (contact list) ── -->
+  <aside class="tg-sidebar">
+    <div class="tg-sidebar-header">
+      <span class="tg-sidebar-title">Chats</span>
+    </div>
+    <ul class="tg-contact-list">
+      <li class="tg-contact active">
+        <div class="tg-avatar pulse">🤖</div>
+        <div class="tg-contact-info">
+          <span class="tg-contact-name">Event Companion Bot</span>
+          <span class="tg-contact-preview">AI &amp; Technology Workshop — SNJB Chandwad</span>
+        </div>
+        <span class="tg-badge">1</span>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ── Chat panel ── -->
+  <main class="tg-chat">
+
+    <!-- Chat header -->
+    <header class="tg-chat-header">
+      <div class="tg-avatar small">🤖</div>
+      <div class="tg-header-info">
+        <span class="tg-header-name">🧠 AI &amp; Technology Workshop Bot</span>
+        <span class="tg-header-status" id="headerStatus">online</span>
+      </div>
+      <div class="tg-header-actions">
+        <!-- Voice output toggle -->
+        <button class="tg-icon-btn" id="voiceToggleBtn" title="Bot voice on/off">🔊</button>
+        <button class="tg-icon-btn" title="Search">🔍</button>
+        <button class="tg-icon-btn" title="More">⋯</button>
+      </div>
+    </header>
+
+    <!-- Message area -->
+    <section class="tg-messages" id="msgArea"></section>
+
+    <!-- Typing indicator -->
+    <div class="tg-typing-row" id="typingRow" style="display:none">
+      <div class="tg-avatar tiny">🤖</div>
+      <div class="tg-typing-bubble">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+
+    <!-- Input bar -->
+    <footer class="tg-input-bar">
+      <!-- Mic button -->
+      <button class="tg-mic-btn" id="micBtn" title="Speak your question">🎤</button>
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Ask me anything… or tap 🎤 to speak"
+        autocomplete="off"
+      />
+      <button class="tg-send-btn" id="sendBtn" title="Send">➤</button>
+    </footer>
+  </main>
+
+</div><!-- /.tg-app -->
+
+
+<!-- ═══════════════════ MODALS ═══════════════════ -->
+
+<!-- Registration modal -->
+<div class="modal-overlay" id="regModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="regModal">✕</button>
+    <h2>📝 Event Registration</h2>
+    <form id="regForm" novalidate>
+      <label>Full Name<input type="text"  id="regName"    placeholder="Your full name"   required /></label>
+      <label>Email   <input type="email" id="regEmail"   placeholder="you@email.com"     required /></label>
+      <label>Phone   <input type="tel"   id="regPhone"   placeholder="+91-XXXXXXXXXX"    required /></label>
+      <label>College <input type="text"  id="regCollege" placeholder="College / University" required /></label>
+      <div class="team-section">
+        <p class="team-section-title">👥 Team Details <span>(Optional)</span></p>
+        <label>Team ID   <input type="text" id="regTeamId"   placeholder="e.g. TEAM-01" /></label>
+        <label>Team Name <input type="text" id="regTeamName" placeholder="e.g. Code Warriors" /></label>
+        <label>Team Type
+          <select id="regTeamType">
+            <option value="-">-- Select Team Type --</option>
+            <option value="Solo">Solo</option>
+            <option value="Pair (2)">Pair (2)</option>
+            <option value="Small Team (3–4)">Small Team (3–4)</option>
+            <option value="Large Team (5+)">Large Team (5+)</option>
+          </select>
+        </label>
+      </div>
+      <button type="submit" class="btn-primary">Register →</button>
+    </form>
+    <div class="modal-success" id="regSuccess" style="display:none">
+      <div class="success-icon">✅</div>
+      <p id="regSuccessMsg"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Schedule modal -->
+<div class="modal-overlay" id="schedModal">
+  <div class="modal-box wide">
+    <button class="modal-close" data-close="schedModal">✕</button>
+    <h2>📅 Event Schedule</h2>
+    <ul class="schedule-list" id="scheduleList"></ul>
+  </div>
+</div>
+
+<!-- Venue modal -->
+<div class="modal-overlay" id="venueModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="venueModal">✕</button>
+    <h2>📍 Event Venue</h2>
+    <div class="venue-card" id="venueCard"></div>
+  </div>
+</div>
+
+<!-- Rules modal -->
+<div class="modal-overlay" id="rulesModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="rulesModal">✕</button>
+    <h2>📜 Event Rules</h2>
+    <ol class="rules-list" id="rulesList"></ol>
+  </div>
+</div>
+
+<!-- Prizes modal -->
+<div class="modal-overlay" id="prizesModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="prizesModal">✕</button>
+    <h2>🏆 Prize Pool</h2>
+    <div class="prizes-grid" id="prizesGrid"></div>
+  </div>
+</div>
+
+<!-- Reminders modal -->
+<div class="modal-overlay" id="remindModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="remindModal">✕</button>
+    <h2>⏰ Event Countdown</h2>
+    <div class="remind-card">
+      <p class="remind-label">Next Session</p>
+      <p class="remind-name" id="remindName">AI Workshop</p>
+      <div class="countdown-row">
+        <div class="countdown-unit"><span id="cdH">00</span><small>hrs</small></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit"><span id="cdM">00</span><small>min</small></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-unit"><span id="cdS">00</span><small>sec</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ modal -->
+<div class="modal-overlay" id="faqModal">
+  <div class="modal-box wide">
+    <button class="modal-close" data-close="faqModal">✕</button>
+    <h2>❓ FAQ — Ask Me Anything</h2>
+    <div class="faq-input-row">
+      <input type="text" id="faqInput" placeholder="Type your question here…" />
+      <button class="btn-primary" id="faqAsk">Ask</button>
+    </div>
+    <div class="faq-answer-area" id="faqAnswer"></div>
+    <div class="faq-chips">
+      <span class="faq-chip" data-q="Where is the event?">Where is the event?</span>
+      <span class="faq-chip" data-q="When is the AI Workshop?">When is the AI Workshop?</span>
+      <span class="faq-chip" data-q="What are the prizes?">What are the prizes?</span>
+      <span class="faq-chip" data-q="Who can participate?">Who can participate?</span>
+      <span class="faq-chip" data-q="What are the rules?">What are the rules?</span>
+    </div>
+  </div>
+</div>
+
+<!-- Feedback modal -->
+<div class="modal-overlay" id="feedbackModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="feedbackModal">✕</button>
+    <h2>⭐ Event Feedback</h2>
+    <div class="star-row" id="starRow">
+      <span class="star" data-v="1">★</span>
+      <span class="star" data-v="2">★</span>
+      <span class="star" data-v="3">★</span>
+      <span class="star" data-v="4">★</span>
+      <span class="star" data-v="5">★</span>
+    </div>
+    <p class="star-label" id="starLabel">Tap to rate</p>
+    <textarea id="feedbackMsg" placeholder="Tell us about your experience…" rows="4"></textarea>
+    <button class="btn-primary" id="submitFeedback">Submit Feedback</button>
+    <div class="modal-success" id="feedbackSuccess" style="display:none">
+      <div class="success-icon">💙</div>
+      <p>Thank you for your valuable feedback!</p>
+    </div>
+  </div>
+</div>
+
+<!-- Help modal -->
+<div class="modal-overlay" id="helpModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="helpModal">✕</button>
+    <h2>📞 Helpline</h2>
+    <div class="help-intro">
+      <div class="help-bot-icon">👩‍🏫</div>
+      <p>Contact our Event Coordinator</p>
+    </div>
+    <div class="help-contact" style="margin-bottom:16px;">
+      <p><strong>Miss. Sandhya Aghav Mam</strong></p>
+      <p style="color:var(--tg-accent);font-size:13px;">AIDS Department — 2nd Floor, Left Side</p>
+      <p style="font-size:12px;color:var(--tg-muted);">SNJB College of Engineering, Chandwad</p>
+      <p style="margin-top:12px;font-size:22px;font-weight:800;">
+        📞 <a href="tel:9579001895" style="color:var(--tg-accent);text-decoration:none;">9579001895</a>
+      </p>
+    </div>
+
+    <!-- 🏥 Medical Emergency quick strip -->
+    <div class="medical-strip">
+      <span class="medical-strip-label">🏥 Medical Emergency</span>
+      <div class="medical-strip-numbers">
+        <a href="tel:108"  class="mstrip-btn red">🚑 108<small>Ambulance</small></a>
+        <a href="tel:100"  class="mstrip-btn blue">👮 100<small>Police</small></a>
+        <a href="tel:1091" class="mstrip-btn pink">👩 1091<small>Women</small></a>
+        <a href="tel:02556-264101" class="mstrip-btn green">🏫 Campus<small>Security</small></a>
+      </div>
+      <button class="mstrip-more" onclick="closeModal('helpModal');setTimeout(()=>handleAction('medical'),150)">
+        View Full Medical Helpline →
+      </button>
+    </div>
+
+    <ul class="help-list">
+      <li onclick="window.location.href='/schedule'" style="cursor:pointer"><span class="help-icon">📅</span> Event details &amp; Schedule <span style="margin-left:auto;color:var(--tg-accent)">→</span></li>
+      <li onclick="window.location.href='/registration'" style="cursor:pointer"><span class="help-icon">📝</span> Registration help <span style="margin-left:auto;color:var(--tg-accent)">→</span></li>
+      <li onclick="window.location.href='/venue'" style="cursor:pointer"><span class="help-icon">📍</span> Venue &amp; directions <span style="margin-left:auto;color:var(--tg-accent)">→</span></li>
+      <li onclick="window.location.href='/prizes'" style="cursor:pointer"><span class="help-icon">🏆</span> Prize information <span style="margin-left:auto;color:var(--tg-accent)">→</span></li>
+      <li onclick="window.location.href='/reminders'" style="cursor:pointer"><span class="help-icon">🔔</span> Reminder support <span style="margin-left:auto;color:var(--tg-accent)">→</span></li>
+      <li onclick="window.location.href='/faq'" style="cursor:pointer"><span class="help-icon">❓</span> FAQ &amp; Any queries <span style="margin-left:auto;color:var(--tg-accent)">→</span></li>
+      <li onclick="window.location.href='/attendance'" style="cursor:pointer"><span class="help-icon">📋</span> Attendance <span style="margin-left:auto;color:var(--tg-accent)">→</span></li>
+      <li onclick="closeModal('helpModal');setTimeout(()=>handleAction('medical'),150)" style="cursor:pointer"><span class="help-icon">🏥</span> Medical Helpline <span style="margin-left:auto;color:#e74c3c">→</span></li>
+      <li onclick="closeModal('helpModal');setTimeout(()=>handleAction('feedback'),150)" style="cursor:pointer"><span class="help-icon">⭐</span> Give Feedback <span style="margin-left:auto;color:var(--tg-gold)">→</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Medical Helpline modal -->
+<div class="modal-overlay" id="medicalModal">
+  <div class="modal-box wide">
+    <button class="modal-close" data-close="medicalModal">✕</button>
+    <h2>🏥 Medical Helpline</h2>
+    <p style="font-size:13px;color:var(--tg-muted);margin-bottom:16px;">
+      Health emergency? Contact immediately — available 24×7
+    </p>
+    <div class="medical-grid" id="medicalGrid"></div>
+    <div class="medical-note">
+      <span>⚠️</span>
+      <span>For any medical emergency on campus, go directly to the <strong>Medical Room — Ground Floor</strong> or call <strong>108</strong> immediately.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Notification toast -->
+<div class="notif-toast" id="notifToast" style="display:none">
+  <span class="notif-bell">🔔</span>
+  <span id="notifText">The AI Workshop is starting now!</span>
+</div>
+
+<!-- Voice listening overlay -->
+<div class="voice-overlay" id="voiceOverlay" style="display:none">
+  <div class="voice-modal">
+    <div class="voice-ripple">
+      <div class="ripple r1"></div>
+      <div class="ripple r2"></div>
+      <div class="ripple r3"></div>
+      <span class="voice-mic-icon">🎤</span>
+    </div>
+    <p class="voice-status" id="voiceStatus">Listening…</p>
+    <p class="voice-transcript" id="voiceTranscript"></p>
+    <button class="voice-cancel" id="voiceCancel">✕ Cancel</button>
+  </div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>

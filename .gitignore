@@ -1,0 +1,34 @@
+# Environments
+.env
+venv/
+.venv/
+env/
+ENV/
+bin/
+lib/
+include/
+
+# Node/JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# OS/System
+.DS_Store
+Thumbs.db
+._*
+
+# Hackathon Zip files
+*.zip
+*.tar.gz
+*.tgz
+*.rar

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Venue — AI & Technology Workshop</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/pages.css"/>
+</head>
+<body class="page-body">
+  <div class="page-wrap">
+    <a class="back-btn" href="/">← Back to Chat</a>
+    <div class="page-header">
+      <span class="page-icon">📍</span>
+      <div>
+        <h1>Event Venue</h1>
+        <p>AI &amp; Technology Workshop</p>
+      </div>
+    </div>
+
+    <div class="venue-page-card">
+      <div class="venue-big-icon">🏛️</div>
+      <h2>{{ venue.college }}</h2>
+      <div class="venue-badge">{{ venue.hall }}</div>
+      <p class="venue-address">{{ venue.address }}</p>
+      <a href="{{ venue.maps_url }}" target="_blank" class="page-btn maps-btn">
+        📍 View on Google Maps
+      </a>
+    </div>
+
+    <div class="venue-details-grid">
+      <div class="venue-detail-card">
+        <span class="vd-icon">📅</span>
+        <span class="vd-label">Date</span>
+        <span class="vd-value">14 August 2026</span>
+      </div>
+      <div class="venue-detail-card">
+        <span class="vd-icon">⏰</span>
+        <span class="vd-label">Time</span>
+        <span class="vd-value">10 AM – 4 PM</span>
+      </div>
+      <div class="venue-detail-card">
+        <span class="vd-icon">🚪</span>
+        <span class="vd-label">Room</span>
+        <span class="vd-value">Lab No. 235</span>
+      </div>
+      <div class="venue-detail-card">
+        <span class="vd-icon">✅</span>
+        <span class="vd-label">Entry</span>
+        <span class="vd-value">FREE</span>
+      </div>
+      <div class="venue-detail-card">
+        <span class="vd-icon">🏛️</span>
+        <span class="vd-label">Floor</span>
+        <span class="vd-value">2nd Floor</span>
+      </div>
+      <div class="venue-detail-card">
+        <span class="vd-icon">◀️</span>
+        <span class="vd-label">Side</span>
+        <span class="vd-value">Left Side</span>
+      </div>
+    </div>
+
+    <!-- Direction steps -->
+    <div class="aids-dept-box" style="margin-top:20px;">
+      <p class="aids-dept-title">🗺️ How to Reach — Step by Step</p>
+      <div class="aids-dept-steps">
+        <div class="aids-step">
+          <span class="aids-step-num">1</span>
+          <span>Enter <strong>SNJB KBJ College</strong> main gate, Chandwad</span>
+        </div>
+        <div class="aids-step">
+          <span class="aids-step-num">2</span>
+          <span>Walk to the <strong>main building</strong> staircase</span>
+        </div>
+        <div class="aids-step">
+          <span class="aids-step-num">3</span>
+          <span>Go up to the <strong>2nd Floor</strong></span>
+        </div>
+        <div class="aids-step">
+          <span class="aids-step-num">4</span>
+          <span>Turn to the <strong>Left Side</strong> — AIDS Department</span>
+        </div>
+        <div class="aids-step">
+          <span class="aids-step-num">5</span>
+          <span>Enter <strong>Lab No. 235</strong> — Workshop venue! 🎉</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
